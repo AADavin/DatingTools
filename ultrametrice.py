@@ -45,7 +45,7 @@ def ultrametricer(node_order, tree_file):
     return mytree.write(format=1)
 
 
-def get_chronograms(species_tree, order_file):
+def ultrametrice(species_tree, order_file):
 
     with open(order_file) as f:
         for line in f:
@@ -61,4 +61,4 @@ if __name__ == "__main__":
         exit(0)
 
     scr, species_tree, order_file = sys.argv
-    get_chronograms(species_tree, order_file)
+    ultrametrice(species_tree, order_file)

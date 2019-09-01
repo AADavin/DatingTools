@@ -22,9 +22,21 @@ You might need also six (a dependency of ete3)
 
 Reads all the uTs files in your current file and prints all transfers
 
+* **get_constraints.py**
+
+Prints the constraints given a set of transfers and a species tree
+
 * **get_node_order.py**
 
 Reads a tree, outputs the node order of the tree. The format is, from the oldest to the youngest separated by commas
+
+* **get_agreement.py**
+
+Receives a constraints file and a node orders file and returns the agreement
+
+* **ultrametrice.py**
+
+Receives a tree and a node order (see script get_node_order.py) and outputs the ultrametric tree with that node order
 
 * **propagate_constraints.py**
 

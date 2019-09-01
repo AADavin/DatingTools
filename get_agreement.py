@@ -40,38 +40,21 @@ def get_agreement(*args):
     input_files = args[0]
 
     constraints_infile = input_files[0]
-    sampling_frequency = int(input_files[1])
-    node_orders_files = input_files[2:]
+    node_order_file = input_files[1]
 
     constraints, total_weight = get_constraints(constraints_infile)
 
-    agreements = list()
-
-    for node_order_file in node_orders_files:
-
-        name = node_order_file.split(".")[0]
-        with open(node_order_file) as f:
-            for i,order in enumerate(f):
-                if i % sampling_frequency == 0:
-                    myorder = order.strip().split(",")
-                    try:
-                        agreement = str(1-(compute_agreement(myorder, constraints)/total_weight))
-                        agreements.append((agreement, name))
-                    except:
-                        agreements.append(["ERROR PROCESSING LINE"])
-
-
-    print("Agreement,Type")
-    for item in agreements:
-        line = ",".join(item)
-        print(line)
-
+    with open(node_order_file) as f:
+        for i,order in enumerate(f):
+            myorder = order.strip().split(",")
+            agreement = str(1-(compute_agreement(myorder, constraints)/total_weight))
+            print(agreement)
 
 
 if __name__ == "__main__":
 
-    if len(sys.argv) <= 1:
-        print ("usage: python get_agreement.py constraints_infile sampling_frequency orders1 orders2 ... ordersn")
+    if len(sys.argv) != 3:
+        print ("usage: python get_agreement.py constraints order")
         exit(0)
 
     get_agreement(sys.argv[1:])
