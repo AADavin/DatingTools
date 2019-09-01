@@ -24,7 +24,7 @@ def read_constraints(constraints_file):
             dn, rc, wt = l.strip().split("\t")
             if dn not in constraints:
                 constraints[dn] = dict()
-            if rc not in constraints[dn][rc]:
+            if rc not in constraints[dn]:
                 constraints[dn][rc] = 0.0
             constraints[dn][rc] += float(wt)
     return constraints
@@ -44,8 +44,16 @@ def read_calibrations(calibrations_file):
     return calibrations
 
 
-def propagate_upwards():
-    pass
+def propagate_upwards(mtree):
+
+    upper = 1000000000
+
+    for l in mtree.get_leaves():
+        for n in l.get_ancestors():
+            if n.upper > upper:
+                n.upper = upper
+
+
 
 def propagate_downwards():
     pass
@@ -75,10 +83,9 @@ def propagate_constraints(mtree, constraints, calibrations):
 
     # Then, for each calibration, we assign the calibration and propagate the constraint
 
-    
-
     for calibration in calibrations:
         n1, n2, upper, lower = calibration
+
 
         # First, we propagate the upper constraint downwards the tree
 
@@ -96,12 +103,13 @@ def propagate_constraints(mtree, constraints, calibrations):
         # Second we propagate the lower constraint upwards the tree
 
         if lower != -1.0:
+
+            if mnode.lower < lower:
+                mnode.lower = lower
+
             for n in mnode.get_ancestors():
                 if n.lower < lower:
                     n.lower = lower
-
-
-
 
     # Now we have propagated all the calibrations upwards and downwards.
     # It is time to use the transfers to propagate the constrains horizontally
@@ -129,10 +137,10 @@ def propagate_constraints(mtree, constraints, calibrations):
                     # We propagate upwards
 
                     for n in dn_node.get_ancestors():
-                        n.lower < dn_node.lower
-                        n.lower = dn_node.lower
+                        if n.lower < dn_node.lower:
+                            n.lower = dn_node.lower
 
-                if dn_node.upper > rc_node.upper:
+                if dn_node.upper < rc_node.upper:
 
                     count_changes += 1
 
@@ -152,11 +160,9 @@ def propagate_constraints(mtree, constraints, calibrations):
 
     for n in mtree.traverse():
         if not n.is_leaf():
-            n.name = (str(n.upper) + "_" + str(n.lower))
+            n.name = str(n.upper) + "_" + str(n.lower)
 
-    return mtree.write(format=1)
-
-
+    print(mtree.write(format=1))
 
 
 if __name__ == "__main__":
@@ -174,4 +180,4 @@ if __name__ == "__main__":
         constraints = read_constraints(constraints_file)
         calibrations = read_calibrations(calibrations_file)
 
-        print(propagate_constraints(mtree, constraints, calibrations))
+        propagate_constraints(mtree, constraints, calibrations)
