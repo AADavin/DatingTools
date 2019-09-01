@@ -26,7 +26,6 @@ def get_constraints(treefile, transfersfile):
             print(new_line)
 
 
-
 if __name__ == "__main__":
 
     if (len(sys.argv) != 3):

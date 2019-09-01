@@ -41,13 +41,4 @@ def get_conflict(order_file, constraints_file):
             myorder = line.strip().split(",")
             print compute_conflict(myorder,constraints)
 
-
-
 if __name__ == "__main__":
-
-    if len(sys.argv) != 3:
-        print ("usage: python get_conflict.py order constraints")
-        exit(0)
-
-    scr, order_file, constraints_file = sys.argv
-    compute_conflict(order_file, constraints_file)
