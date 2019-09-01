@@ -5,6 +5,7 @@ import os
 def read_bootstrap():
 
     replicate_files = [x for x in os.listdir("./") if "partial_order" in x]
+    number_files = len(replicate_files)
     constraints = dict()
     for replicate_file in replicate_files:
         with open("./" + replicate_file) as f:
@@ -19,7 +20,7 @@ def read_bootstrap():
 
     for dn in constraints:
         for rc in constraints[dn]:
-            line = "\t".join([dn, rc, str(constraints[dn][rc]["n"]), str(constraints[dn][rc]["wt"])])
+            line = "\t".join([dn, rc, str(constraints[dn][rc]["n"]), str(constraints[dn][rc]["wt"] / number_files)])
             print(line)
 
 
@@ -27,7 +28,7 @@ def read_bootstrap():
 if __name__ == "__main__":
 
     if len(sys.argv) != 1:
-        print("usage: python read_boostrap")
+        print("usage: python read_boostrap.py")
         exit(0)
 
     scr = sys.argv

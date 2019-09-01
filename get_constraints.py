@@ -19,7 +19,7 @@ def get_constraints(treefile, transfersfile):
 
     with open(transfersfile) as f:
         for line in f:
-            donor, recipient, wt = line.strip().split("\t")
+            _, donor, recipient, wt = line.strip().split("\t")
             if recipient in leaves:
                 continue
             new_line = "\t".join([myparents[donor], recipient, wt])
@@ -33,5 +33,4 @@ if __name__ == "__main__":
         exit(0)
 
     scr,treefile,transferfile = sys.argv
-
     get_constraints(treefile, transferfile)

@@ -40,8 +40,8 @@ def bootstrap_constraints(transfers_file, tree_file, replicates):
     fam_number = len(constraints)
 
     for i in range(replicates):
-        with open("./ReplicateNUM.tsv".replace("NUM",str(i)), "w") as f:
-            fams_sampled = random.sample(constraints.keys(), int(fam_number / 2))
+        with open("./Replicate_NUM.tsv".replace("NUM",str(i)), "w") as f:
+            fams_sampled = random.choices(constraints.keys(), fam_number)
             for fam in fams_sampled:
                 for dn_c in constraints[fam]:
                     for rc in constraints[fam][dn_c]:
@@ -52,7 +52,7 @@ def bootstrap_constraints(transfers_file, tree_file, replicates):
 if __name__ == "__main__":
 
     if len(sys.argv) != 4:
-        print("usage: python parse_families.py folder_with_ufs cutoff")
+        print("usage: python bootstrap_constraints.py transfers_file tree_file numer_of_replicates")
         exit(0)
 
     scr, transfers_file, tree_file, replicates = sys.argv

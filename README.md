@@ -18,9 +18,18 @@ You might need also six (a dependency of ete3)
 
 ***
 
-* **parse_transfers.py**
+* **bootstrap_constraints.py**
 
-Reads all the uTs files in your current file and prints all transfers
+Bootstrap a file of transfers (read with parse transfers) and outputs a given number of replicates
+from those transfers, sampling with replacement
+
+* **count_orders.py**
+
+It tells you how many ranked trees there are for a given tree. Thanks to Sebastián Izquierdo (https://es.wikipedia.org/wiki/Sebasti%C3%A1n_Izquierdo) for his help
+
+* **compute_reds.py**
+
+Computes the RED tree
 
 * **get_constraints.py**
 
@@ -34,9 +43,23 @@ Reads a tree, outputs the node order of the tree. The format is, from the oldest
 
 Receives a constraints file and a node orders file and returns the agreement
 
-* **ultrametrice.py**
+* **generate_orders.py**
 
-Receives a tree and a node order (see script get_node_order.py) and outputs the ultrametric tree with that node order
+Generates all the possible ranked trees for a given tree.
+Watch out, for some trees the number of possibilities might be larger than the number of atoms in the universe.
+
+* **map_trees.py**
+
+Map the inner nodes of a reference tree to a set of trees
+
+* **mc_explorer.py**
+
+Explores ranked trees using a Bayesian approach.
+You can use it to generate a set of trees compatible with a set of constraints by setting a very low temperature
+
+* **parse_transfers.py**
+
+Reads all the uTs files in your current file and prints all transfers
 
 * **propagate_constraints.py**
 
@@ -46,16 +69,10 @@ Returns the annotated species tree in which the inner nodes are called:
 
 UPPERCONSTRAINT_LOWERCONSTRAINT
 
-* **mc_explorer.py**
+* **read_bootstrap.py**
 
-Explores ranked trees using a Bayesian approach.
-You can use it to generate a set of trees compatible with a set of constraints by setting a very low temperature
+Reads a set of files (output of MaxTiC, partial order) and it gives you the number of times that a constraint was found
 
-* **count_orders.py**
+* **ultrametrice.py**
 
-It tells you how many ranked trees there are for a given tree. Thanks to Sebastián Izquierdo for his help 
-
-* **generate_orders.py**
-
-Generates all the possible ranked trees for a given tree.
-Watch out, for some trees the number of possibilities might be larger than the number of atoms in the universe.
+Receives a tree and a node order (see script get_node_order.py) and outputs the ultrametric tree with that node order
