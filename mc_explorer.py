@@ -162,8 +162,10 @@ def get_constraints(constraints_file):
 
         for line in f:
 
+
+
             try: dn, rc, wt = line.strip().split("\t")
-            except: dn, rc, wt = line.strip().split(" ")
+            except: dn, rc, wt, _ = line.strip().split(" ")
 
             if dn not in constraints:
                 constraints[dn] = dict()
