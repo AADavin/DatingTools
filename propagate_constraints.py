@@ -70,8 +70,9 @@ def propagate_constraints(mtree, constraints, calibrations):
     :param mtree: A ete3.Tree (use read_tree())
     :param constraints: A dict of constraints (use read_constraints())
     :param calibrations: A list of calibrations (use read_calibrations())
-    :return: A newick tree with propagated constraints
+    :return: Creates three files. 1- Tree with Fossil calibrations. 2- Tree with Fossil calibrations propagated 3-Nodes with changes between 1 and 2
     '''
+
 
     # We start by assigning each inner node of the species tree two new features
 
@@ -110,6 +111,20 @@ def propagate_constraints(mtree, constraints, calibrations):
             for n in mnode.get_ancestors():
                 if n.lower < lower:
                     n.lower = lower
+
+    # We create a file with the constraints of each node:
+    fossil2limit = dict()
+    with open("./FossilLimits.tsv", "w") as f:
+        for n in mtree.traverse():
+            if not n.is_leaf():
+                if n.lower == 0.0:
+                    mlower = "-1"
+                else:
+                    mlower = str(n.lower)
+                line = "\t".join([n.name, str(n.upper), str(mlower)]) + "\n"
+                fossil2limit[n.name] = (str(n.upper), str(mlower))
+                f.write(line)
+
 
     # Now we have propagated all the calibrations upwards and downwards.
     # It is time to use the transfers to propagate the constrains horizontally
@@ -156,13 +171,24 @@ def propagate_constraints(mtree, constraints, calibrations):
             changes = False
 
     #  The constraints has been fully propagated
-    # We print the tree with the intervals
+    transfer2limit = dict()
+    with open("./FossilAndTransferLimits.tsv", "w") as f:
+        for n in mtree.traverse():
+            if not n.is_leaf():
+                if n.lower == 0.0:
+                    mlower = "-1"
+                else:
+                    mlower = str(n.lower)
+                line = "\t".join([n.name, str(n.upper), str(mlower)]) + "\n"
+                transfer2limit[n.name] = (str(n.upper), str(mlower))
+                f.write(line)
 
-    for n in mtree.traverse():
-        if not n.is_leaf():
-            n.name = str(n.upper) + "_" + str(n.lower)
+    # Now we print the differences:
 
-    print(mtree.write(format=1))
+    with open("DiffTransferFossil", "w") as f:
+        for n in fossil2limit:
+            if fossil2limit[n] != transfer2limit[n]:
+                f.write("\t".join([n, transfer2limit[n][0], transfer2limit[n][1]]) + "\n")
 
 
 if __name__ == "__main__":
@@ -171,6 +197,7 @@ if __name__ == "__main__":
 
     if len(args) != 4:
         print("Usage: python propagate_constraints.py species_tree constraints_file calibrations_file")
+
 
     else:
 

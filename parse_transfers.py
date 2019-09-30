@@ -9,7 +9,7 @@ def parse_transfers(mypath):
         with open(os.path.join(mypath, myfile)) as f:
             f.readline()
             for line in f:
-                print(line.strip())
+                print(myfile + "\t" + line.strip())
 
 if __name__ == "__main__":
 
