@@ -1,5 +1,4 @@
 import sys
-import os
 import ete3
 
 def convert_constraints_to_transfers(constraints_file, transfers_file, tree_file):
@@ -24,9 +23,7 @@ def convert_constraints_to_transfers(constraints_file, transfers_file, tree_file
 
     with open(constraints_file) as f:
         for line in f:
-            dn, rc, js, wt = line.strip().split("\t")
-            if int(js) < 95:
-                continue
+            dn, rc, wt, _ = line.strip().split(" ")
             if dn not in constraints:
                 constraints[dn] = dict()
             if rc not in constraints[dn]:

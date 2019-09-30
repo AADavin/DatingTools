@@ -50,7 +50,7 @@ def compute_convergence(random_file, chain_file, variance_ratio):
     for n in nodes:
 
         try:
-            ratio = r_node2variance[n] / c_node2variance[n]
+            ratio = r_node2variance[n] / float(c_node2variance[n])
             if ratio >= variance_ratio:
                 r = "Yes"
             else:
