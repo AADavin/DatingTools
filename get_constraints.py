@@ -19,7 +19,7 @@ def get_constraints(treefile, transfersfile):
 
     with open(transfersfile) as f:
         for line in f:
-            _, donor, recipient, wt = line.strip().split("\t")
+            fam, donor, recipient, wt = line.strip().split("\t")
 
             if "(" in donor:
                 donor = donor.split("(")[0]
@@ -28,7 +28,8 @@ def get_constraints(treefile, transfersfile):
 
             if recipient in leaves:
                 continue
-            new_line = "\t".join([myparents[donor], recipient, wt])
+
+            new_line = "\t".join(fam, [myparents[donor], recipient, wt])
             print(new_line)
 
 

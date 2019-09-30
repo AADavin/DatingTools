@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3ce2f08b-8d3c-4fd8-8387-eb0685362e0b" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/TestFiles/filter_constraints.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/get_constraints.py" beforeDir="false" afterPath="$PROJECT_DIR$/get_constraints.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -12,14 +14,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/get_constraints.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="567">
-              <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+            <state relative-caret-position="192">
+              <caret line="8" column="5" lean-forward="true" selection-end-line="43" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/TestFiles/filter_constraints.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="216">
+              <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -74,17 +85,6 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/convert_constraints_to_transfers.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-7">
-              <folding>
-                <element signature="e#0#10#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/compute_reds.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-7">
               <folding>
@@ -163,6 +163,7 @@
         <option value="$PROJECT_DIR$/propagate_constraints.py" />
         <option value="$PROJECT_DIR$/parse_transfers.py" />
         <option value="$PROJECT_DIR$/get_constraints.py" />
+        <option value="$PROJECT_DIR$/TestFiles/filter_constraints.py" />
       </list>
     </option>
   </component>
@@ -184,6 +185,11 @@
             <path>
               <item name="DatingTools" type="b2602c69:ProjectViewProjectNode" />
               <item name="DatingTools" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DatingTools" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DatingTools" type="462c0819:PsiDirectoryNode" />
+              <item name="TestFiles" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -533,11 +539,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/get_constraints.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+        <state relative-caret-position="192">
+          <caret line="8" column="5" lean-forward="true" selection-end-line="43" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TestFiles/filter_constraints.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
         </state>
       </provider>
     </entry>
