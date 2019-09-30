@@ -33,6 +33,12 @@ def convert_constraints_to_transfers(constraints_file, transfers_file, tree_file
 
         for line in f:
             fam, dn, rc, wt = line.strip().split("\t")
+
+            if "(" in dn:
+                dn = dn.split("(")[0]
+            if "(" in rc:
+                rc = rc.split("(")[0]
+
             if node2parent[dn] == "None":
                 continue
             if rc in leaves:
