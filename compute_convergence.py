@@ -1,5 +1,4 @@
 import sys
-import numpy as np
 
 def read_orders(orders_file):
 
@@ -26,20 +25,16 @@ def compute_variance(orders):
             node2range[node].append(i)
 
     for node, ranges in node2range.items():
-        var = np.var(ranges)
+        
+        mean = sum(ranges) / len(ranges)
+        var = sum([(x - mean)**2 for x in ranges]) / (len(ranges) - 1)
+
         try:
             node2variance[node] = var
         except:
             node2variance[node] = 0
 
     return node2variance
-
-
-
-
-
-
-
 
 
 def compute_convergence(random_file, chain_file, variance_ratio):
