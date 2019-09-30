@@ -25,7 +25,7 @@ def compute_variance(orders):
             node2range[node].append(i)
 
     for node, ranges in node2range.items():
-        
+
         mean = sum(ranges) / len(ranges)
         var = sum([(x - mean)**2 for x in ranges]) / (len(ranges) - 1)
 
@@ -65,7 +65,7 @@ def compute_convergence(random_file, chain_file, variance_ratio):
 
 if __name__ == "__main__":
 
-    if len(sys.argv) != 1:
+    if len(sys.argv) != 4:
         print("usage: python compute_convergence.py random.orders yourchain.orders variance_ratio")
         exit(0)
 
