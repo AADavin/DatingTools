@@ -29,7 +29,7 @@ def get_constraints(treefile, transfersfile):
             if recipient in leaves:
                 continue
 
-            new_line = "\t".join(fam, [myparents[donor], recipient, wt])
+            new_line = "\t".join([fam, myparents[donor], recipient, wt])
             print(new_line)
 
 
