@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3ce2f08b-8d3c-4fd8-8387-eb0685362e0b" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/get_constraints.py" beforeDir="false" afterPath="$PROJECT_DIR$/get_constraints.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MaxTiCRelated/MaxTiC2.py" beforeDir="false" afterPath="$PROJECT_DIR$/MaxTiCRelated/MaxTiC2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestFiles/filter_constraints.py" beforeDir="false" afterPath="$PROJECT_DIR$/filter_constraints.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,7 +13,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/get_constraints.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="436">
@@ -25,10 +26,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/TestFiles/filter_constraints.py">
+        <entry file="file://$PROJECT_DIR$/filter_constraints.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="216">
               <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/MaxTiCRelated/MaxTiC2.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="401" column="40" selection-start-line="401" selection-start-column="40" selection-end-line="401" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -82,17 +92,6 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/convert_constraints_to_transfers.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-7">
-              <folding>
-                <element signature="e#0#10#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/read_bootstrap.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-7">
@@ -136,6 +135,11 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>constraints</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -162,6 +166,7 @@
         <option value="$PROJECT_DIR$/parse_transfers.py" />
         <option value="$PROJECT_DIR$/TestFiles/filter_constraints.py" />
         <option value="$PROJECT_DIR$/get_constraints.py" />
+        <option value="$PROJECT_DIR$/MaxTiCRelated/MaxTiC2.py" />
       </list>
     </option>
   </component>
@@ -187,6 +192,11 @@
             <path>
               <item name="DatingTools" type="b2602c69:ProjectViewProjectNode" />
               <item name="DatingTools" type="462c0819:PsiDirectoryNode" />
+              <item name="MaxTiCRelated" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DatingTools" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DatingTools" type="462c0819:PsiDirectoryNode" />
               <item name="TestFiles" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -200,6 +210,11 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -535,13 +550,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TestFiles/filter_constraints.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/get_constraints.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="436">
@@ -549,6 +557,20 @@
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filter_constraints.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MaxTiCRelated/MaxTiC2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="401" column="40" selection-start-line="401" selection-start-column="40" selection-end-line="401" selection-end-column="40" />
         </state>
       </provider>
     </entry>

@@ -399,6 +399,7 @@ print "tree with ",len(internal_nodes),"internal nodes"
 # parse transfers
 #by_family = {}
 for line in constraints:
+  line = "\t".join(line.split("\t")[1:])
   #print line
   if (len(line.split()) >= 2 or len(line.split(",")) >= 2) and line.find("FRQ") <0 and line[0] != "#":
     #print line
