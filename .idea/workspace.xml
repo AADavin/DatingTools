@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3ce2f08b-8d3c-4fd8-8387-eb0685362e0b" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/cut_down_trees.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/filter_constraints.py" beforeDir="false" afterPath="$PROJECT_DIR$/filter_transfers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/get_constraints.py" beforeDir="false" afterPath="$PROJECT_DIR$/get_constraints.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,11 +12,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/get_constraints.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="436">
-              <caret line="31" column="39" selection-start-line="31" selection-start-column="39" selection-end-line="31" selection-end-column="39" />
+            <state relative-caret-position="519">
+              <caret line="32" column="24" selection-start-line="32" selection-start-column="24" selection-end-line="32" selection-end-column="24" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -47,7 +45,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/propagate_constraints.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="253">
@@ -146,13 +144,13 @@
         <option value="$PROJECT_DIR$/propagate_constraints.py" />
         <option value="$PROJECT_DIR$/parse_transfers.py" />
         <option value="$PROJECT_DIR$/TestFiles/filter_constraints.py" />
-        <option value="$PROJECT_DIR$/get_constraints.py" />
         <option value="$PROJECT_DIR$/MaxTiCRelated/MaxTiC2.py" />
         <option value="$PROJECT_DIR$/mc_explorer.py" />
         <option value="$PROJECT_DIR$/compute_convergence.py" />
         <option value="$PROJECT_DIR$/filter_constraints.py" />
         <option value="$PROJECT_DIR$/convert_constraints_to_transfers.py" />
         <option value="$PROJECT_DIR$/cut_down_trees.py" />
+        <option value="$PROJECT_DIR$/get_constraints.py" />
       </list>
     </option>
   </component>
@@ -463,16 +461,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/get_constraints.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="436">
-          <caret line="31" column="39" selection-start-line="31" selection-start-column="39" selection-end-line="31" selection-end-column="39" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MaxTiCRelated/MaxTiC2.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -576,6 +564,16 @@
           <caret line="173" column="3" lean-forward="true" selection-start-line="173" selection-start-column="3" selection-end-line="183" selection-end-column="29" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/get_constraints.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="519">
+          <caret line="32" column="24" selection-start-line="32" selection-start-column="24" selection-end-line="32" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
