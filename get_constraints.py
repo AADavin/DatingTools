@@ -9,6 +9,8 @@ def get_constraints(treefile, transfersfile):
      
         mytree = ete3.Tree(f.readline().strip(), format=1)
 
+    rootname = mytree.get_tree_root().name
+
     for node in mytree.traverse():
         if node.is_root():
             myparents[node.name] = "Root"
@@ -28,7 +30,8 @@ def get_constraints(treefile, transfersfile):
 
             if recipient in leaves:
                 continue
-
+            if myparents[donor] == rootname:
+                continue
             if myparents[donor] == "":
                 continue
 
