@@ -61,7 +61,7 @@ def convert_constraints_to_transfers(constraints_file, transfers_file, tree_file
             for rc in saved_transfers[fam][dn]:
                 wt = str(saved_transfers[fam][dn][rc])
                 dn_c = node2parent[dn]
-                mline = "\t".join([fam, dn, rc, dn_c, wt])
+                mline = "\t".join([fam, dn, dn_c, rc, wt])
                 print(mline)
 
 
