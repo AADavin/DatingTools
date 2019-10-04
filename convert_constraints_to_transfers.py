@@ -68,7 +68,7 @@ def convert_constraints_to_transfers(constraints_file, transfers_file, tree_file
 if __name__ == "__main__":
 
     if len(sys.argv) != 4:
-        print("usage: python convert_constraints_to_transfers ftransfer_file tree_file")
+        print("usage: python convert_constraints_to_transfers constraints_file transfer_file tree_file")
         exit(0)
 
     scr, constraints_file, transfers_file, tree_file = sys.argv
