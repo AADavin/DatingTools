@@ -21,7 +21,10 @@ def read_constraints(constraints_file):
     constraints = dict()
     with open(constraints_file) as f:
         for l in f:
-            dn, rc, wt = l.strip().split("\t")
+            try:
+                dn, rc, wt = l.strip().split("\t")
+            except:
+                _, dn, rc, wt = l.strip().split("\t")
             if dn not in constraints:
                 constraints[dn] = dict()
             if rc not in constraints[dn]:
