@@ -164,7 +164,7 @@ def get_constraints(constraints_file):
 
 
 
-            try: dn, rc, wt = line.strip().split("\t")
+            try: _, dn, rc, wt = line.strip().split("\t")
             except: dn, rc, wt, _ = line.strip().split(" ")
 
             if dn not in constraints:
