@@ -33,6 +33,7 @@ def prepare_singletons_tree(tree_file, rec_folder):
             if n.name not in branch2singl:
                 continue
             n.dist = branch2singl[n.name]
+    print(reftree.write(format=1))
 
 if __name__ == "__main__":
 
