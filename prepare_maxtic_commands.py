@@ -5,7 +5,7 @@ import sys
 def prepare_maxtic_commands():
 
     reps = {x for x in os.listdir("./") if "Replicate" in x}
-    mpath = "python /Users/davin/Desktop/GitHub/Public/DatingTools/MaxTiCRelated/MaxTiC2.py /Users/davin/Desktop/GitHub/Private/GTDBClocks/Files/MaxTiC.nwk REP"
+    mpath = "python /Users/davin/Desktop/GitHub/Public/DatingTools/MaxTiCRelated/MaxTiC2.py /Users/davin/Desktop/GitHub/Private/GTDBClocks/GoingBig/Bootstrap/RefTreeGoingBig.nwk REP"
     for rep in reps:
         print(mpath.replace("REP", rep))
 
