@@ -271,6 +271,14 @@ def monte_carlo(tree_file, constraints_file, n_cycles, T, freq, stopping, anneal
             print("Conflict went below the treshold limit")
             break
 
+        if annealing and cycle >= 1000:
+            acceptance_ratio = sum(accepted_changes) / float(len(accepted_changes))
+            if cycle % 200 == 0:
+                print("Acceptance ratio of last %s cycles is %s" % (str(len(accepted_changes)), str(acceptance_ratio)))
+            if acceptance_ratio >= 0.25:
+                T = T * 0.9
+                print("New temperature is %s" % str(T))
+
         proposed_order = propose_order(parents, children, mynode_order)
 
         newconflict = compute_conflict(proposed_order, constraints)
@@ -295,19 +303,7 @@ def monte_carlo(tree_file, constraints_file, n_cycles, T, freq, stopping, anneal
 
         else:
 
-            if annealing and cycle >= 1000:
-
-                acceptance_ratio = sum(accepted_changes) / float(len(accepted_changes))
-                print("Acceptance ratio of last %s cycles is %s" % (str(len(accepted_changes)), str(acceptance_ratio)))
-
-                if acceptance_ratio >= 0.25:
-                    T = T * 0.9
-                    print("New temperature is %s" % str(T))
-
-                cutoff = math.exp((myconflict - newconflict) / T)
-
-            else:
-                cutoff = math.exp((myconflict - newconflict) / T)
+            cutoff = math.exp((myconflict - newconflict) / T)
 
             if random.random() <= cutoff:
 
