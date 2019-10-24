@@ -285,7 +285,7 @@ def monte_carlo(tree_file, constraints_file, n_cycles, T, freq, stopping, anneal
 
         else:
 
-            if annealing and n_cycles >= 1000:
+            if annealing and cycle >= 1000:
 
                 acceptance_ratio = accepted_changes / float(n_cycles)
                 if acceptance_ratio >= 0.25:
