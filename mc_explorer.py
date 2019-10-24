@@ -288,7 +288,7 @@ def monte_carlo(tree_file, constraints_file, n_cycles, T, freq, stopping, anneal
                     print("New temperature is %s" % str(T))
                     cool_down = True
 
-                elif cool_down == True and acceptance_ratio <= 20 and derivative <= 0:
+                elif cool_down == True and acceptance_ratio <= 0.20 and derivative <= 0:
                     T = T * (1 + abs((acceptance_ratio - 0.2))) * (1 + abs(derivative))
                     print("New temperature is %s" % str(T))
 
