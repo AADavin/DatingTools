@@ -258,11 +258,11 @@ def monte_carlo(tree_file, constraints_file, n_cycles, T, freq, stopping, anneal
     accepted_changes = [0 for x in range(stack_size)]
     # This is a stack with a size proportional to the tree
 
-    if annealing == 1:
+    #if annealing == 1:#
 
-        print("Setting temperature to 0.1 percent total weight of Transfers: %s" % str(total_w/1000))
-        print("To avoid this, do not use annealing")
-        T = total_w / 1000
+    #    print("Setting temperature to 0.1 percent total weight of Transfers: %s" % str(total_w/1000))
+    #    print("To avoid this, do not use annealing")
+    #    T = total_w / 1000
 
 
     while cycle < n_cycles:
