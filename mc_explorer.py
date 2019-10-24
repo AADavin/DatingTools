@@ -254,7 +254,7 @@ def monte_carlo(tree_file, constraints_file, n_cycles, T, freq, stopping, anneal
     print("Temperature set at %s. " % T)
     print("Annealing set as %s" % str(annealing))
 
-    stack_size = len(mynode_order) * 2
+    stack_size = len(mynode_order) * 10
     accepted_changes = [0 for x in range(stack_size)]
     # This is a stack with a size proportional to the tree
 
@@ -279,12 +279,18 @@ def monte_carlo(tree_file, constraints_file, n_cycles, T, freq, stopping, anneal
                 print("Acceptance ratio of last %s cycles is %s" % (str(len(accepted_changes)), str(acceptance_ratio)))
 
                 # PD
-                
-                derivative = acceptance_ratio - last_acceptance_ratio
 
+                derivative = acceptance_ratio - last_acceptance_ratio
+                cool_down = False
                 if acceptance_ratio >= 0.30:
                     T = T * (acceptance_ratio - 0.3) * (1 - derivative)
                     print("New temperature is %s" % str(T))
+                    cool_down = True
+
+                #elif cool_down == True and acceptance_ratio <= 20:
+                #    T = T * () * (1 - derivative)
+                #    print("New temperature is %s" % str(T))
+
 
                 #elif acceptance_ratio <= 20 and cooled_down == True:
                 #  T = T * (1 - derivative)
