@@ -165,7 +165,11 @@ def get_constraints(constraints_file):
 
 
             try: _, dn, rc, wt = line.strip().split("\t")
-            except: dn, rc, wt, _ = line.strip().split(" ")
+            except:
+                try: dn, rc, wt, _ = line.strip().split(" ")
+                except:
+                    dn, rc, wt = line.strip().split("\t")
+
 
             if dn not in constraints:
                 constraints[dn] = dict()
@@ -207,7 +211,7 @@ def get_node_order(tree_file):
     return node_order
 
 
-def monte_carlo(tree_file, constraints_file, n_cycles, T, freq, output):
+def monte_carlo(tree_file, constraints_file, n_cycles, T, freq, stopping, output):
 
     best_tree = output + "_" + "BestTree"
 
@@ -251,6 +255,10 @@ def monte_carlo(tree_file, constraints_file, n_cycles, T, freq, output):
 
 
     while cycle < n_cycles:
+
+        if myconflict <= stopping:
+            print("Conflict went below the treshold limit")
+            break
 
         proposed_order = propose_order(parents, children, mynode_order)
 
@@ -333,6 +341,7 @@ if __name__ == "__main__":
     parser.add_argument("-n", "--n", help="number of cycles, default to 10^6", default=1000000)
     parser.add_argument("-T", "--T", help="Temperature of the chain, default = 1.0", default=1.0)
     parser.add_argument("-f", "--f", help="frequency of sampling, default = 10", default=10)
+    parser.add_argument("-s", "--s", help="Stop chain when conflict goes below this, default = 0", default=0.0)
 
     args = parser.parse_args()
 
@@ -341,5 +350,5 @@ if __name__ == "__main__":
         print("you can run this script just with python mc_explorer -tree yourtreefile -constraints yourconstraints -o name of the output chain")
         exit(0)
 
-    monte_carlo(args.t, args.c, int(args.n), float(args.T), int(args.f), "./" + args.o)
+    monte_carlo(args.t, args.c, int(args.n), float(args.T), int(args.f), float(args.s), "./" + args.o)
 
