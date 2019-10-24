@@ -260,9 +260,9 @@ def monte_carlo(tree_file, constraints_file, n_cycles, T, freq, stopping, anneal
 
     if annealing == 1:
 
-        print("Setting temperature to 1 percent total weight of Transfers: %s" % str(total_w/10))
+        print("Setting temperature to 0.1 percent total weight of Transfers: %s" % str(total_w/1000))
         print("To avoid this, do not use annealing")
-        T = total_w / 100
+        T = total_w / 1000
 
 
     while cycle < n_cycles:
@@ -282,7 +282,8 @@ def monte_carlo(tree_file, constraints_file, n_cycles, T, freq, stopping, anneal
 
                 derivative = acceptance_ratio - last_acceptance_ratio
                 cool_down = False
-                if acceptance_ratio >= 0.30:
+
+                if acceptance_ratio >= 0.30 and derivative >= 0:
                     T = T * (1 - (acceptance_ratio - 0.3)) * (1 - derivative)
                     print("New temperature is %s" % str(T))
                     cool_down = True
