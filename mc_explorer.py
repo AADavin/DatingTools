@@ -273,11 +273,11 @@ def monte_carlo(tree_file, constraints_file, n_cycles, T, freq, stopping, anneal
 
         if annealing and cycle >= 1000:
             acceptance_ratio = sum(accepted_changes) / float(len(accepted_changes))
-            if cycle % 200 == 0:
+            if cycle % int(freq / 10) == 0:
                 print("Acceptance ratio of last %s cycles is %s" % (str(len(accepted_changes)), str(acceptance_ratio)))
-            if acceptance_ratio >= 0.25:
-                T = T * 0.9
-                print("New temperature is %s" % str(T))
+                if acceptance_ratio >= 0.25:
+                    T = T * 0.9
+                    print("New temperature is %s" % str(T))
 
         proposed_order = propose_order(parents, children, mynode_order)
 
