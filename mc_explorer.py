@@ -283,7 +283,7 @@ def monte_carlo(tree_file, constraints_file, n_cycles, T, freq, stopping, anneal
                 derivative = acceptance_ratio - last_acceptance_ratio
                 cool_down = False
                 if acceptance_ratio >= 0.30:
-                    T = T * (acceptance_ratio - 0.3) * (1 - derivative)
+                    T = T * (1 - (acceptance_ratio - 0.3)) * (1 - derivative)
                     print("New temperature is %s" % str(T))
                     cool_down = True
 
