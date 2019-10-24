@@ -267,6 +267,8 @@ def monte_carlo(tree_file, constraints_file, n_cycles, T, freq, stopping, anneal
 
     while cycle < n_cycles:
 
+        cool_down = False
+
         if myconflict <= stopping:
             print("Conflict went below the treshold limit")
             break
@@ -281,7 +283,6 @@ def monte_carlo(tree_file, constraints_file, n_cycles, T, freq, stopping, anneal
                 # PD
 
                 derivative = acceptance_ratio - last_acceptance_ratio
-                cool_down = False
 
                 if acceptance_ratio >= 0.30 and derivative >= 0:
                     T = T * (1 - (acceptance_ratio - 0.3)) * (1 - derivative)
