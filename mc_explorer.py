@@ -254,11 +254,14 @@ def monte_carlo(tree_file, constraints_file, n_cycles, T, freq, stopping, anneal
     print("Temperature set at %s. " % T)
     print("Annealing set as %s" % str(annealing))
 
-    accepted_changes = 0
+    stack_size = len(mycurrenttree)
+    accepted_changes = [0 for x in range(stack_size)]
+    # This is a stack with a size proportional to the tree
 
     if annealing == 1:
 
-        print("Setting temperature to 10% of Transfers: %s" % str(total_w/10))
+        print("Setting temperature to ten percent total weight of Transfers: %s" % str(total_w/10))
+        print("To avoid this, do not use annealing")
         T = total_w / 10
 
 
@@ -272,7 +275,7 @@ def monte_carlo(tree_file, constraints_file, n_cycles, T, freq, stopping, anneal
 
         newconflict = compute_conflict(proposed_order, constraints)
 
-        if newconflict <= best_solution:
+        if newconflict < best_solution:
             best_solution = newconflict
 
             with open(best_tree, "w") as f:
@@ -280,12 +283,13 @@ def monte_carlo(tree_file, constraints_file, n_cycles, T, freq, stopping, anneal
                 f.write(line)
                 f.write(ultrametricer(proposed_order, tree_file))
 
-        if newconflict < myconflict:
+        if newconflict <= myconflict:
 
             mynode_order = proposed_order
             myconflict = newconflict
 
-            accepted_changes +=1
+            accepted_changes.append(1)
+            accepted_changes.pop()
 
             cycle += 1
 
@@ -293,7 +297,9 @@ def monte_carlo(tree_file, constraints_file, n_cycles, T, freq, stopping, anneal
 
             if annealing and cycle >= 1000:
 
-                acceptance_ratio = accepted_changes / float(n_cycles)
+                acceptance_ratio = sum(accepted_changes) / len(accepted_changes)
+                print("Acceptance ratio of last %s cycles is %s" % (str(len(accepted_changes)), str(acceptance_ratio)))
+
                 if acceptance_ratio >= 0.25:
                     T = T * 0.9
                     print("New temperature is %s" % str(T))
@@ -305,12 +311,18 @@ def monte_carlo(tree_file, constraints_file, n_cycles, T, freq, stopping, anneal
 
             if random.random() <= cutoff:
 
+                accepted_changes.append(1)
+                accepted_changes.pop()
+
                 mynode_order = proposed_order
                 myconflict = newconflict
-
                 cycle += 1
 
+
             else:
+
+                accepted_changes.append(0)
+                accepted_changes.pop()
 
                 cycle += 1
 
