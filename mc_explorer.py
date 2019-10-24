@@ -254,7 +254,7 @@ def monte_carlo(tree_file, constraints_file, n_cycles, T, freq, stopping, anneal
     print("Temperature set at %s. " % T)
     print("Annealing set as %s" % str(annealing))
 
-    stack_size = len(mycurrenttree)
+    stack_size = len(mynode_order) * 10
     accepted_changes = [0 for x in range(stack_size)]
     # This is a stack with a size proportional to the tree
 
@@ -288,7 +288,7 @@ def monte_carlo(tree_file, constraints_file, n_cycles, T, freq, stopping, anneal
             mynode_order = proposed_order
             myconflict = newconflict
 
-            accepted_changes.append(1)
+            accepted_changes.insert(0, 1)
             accepted_changes.pop()
 
             cycle += 1
@@ -297,7 +297,7 @@ def monte_carlo(tree_file, constraints_file, n_cycles, T, freq, stopping, anneal
 
             if annealing and cycle >= 1000:
 
-                acceptance_ratio = sum(accepted_changes) / len(accepted_changes)
+                acceptance_ratio = sum(accepted_changes) / float(len(accepted_changes))
                 print("Acceptance ratio of last %s cycles is %s" % (str(len(accepted_changes)), str(acceptance_ratio)))
 
                 if acceptance_ratio >= 0.25:
@@ -311,7 +311,7 @@ def monte_carlo(tree_file, constraints_file, n_cycles, T, freq, stopping, anneal
 
             if random.random() <= cutoff:
 
-                accepted_changes.append(1)
+                accepted_changes.insert(0, 1)
                 accepted_changes.pop()
 
                 mynode_order = proposed_order
@@ -321,7 +321,7 @@ def monte_carlo(tree_file, constraints_file, n_cycles, T, freq, stopping, anneal
 
             else:
 
-                accepted_changes.append(0)
+                accepted_changes.insert(0, 0)
                 accepted_changes.pop()
 
                 cycle += 1
