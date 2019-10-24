@@ -211,7 +211,7 @@ def get_node_order(tree_file):
     return node_order
 
 
-def monte_carlo(tree_file, constraints_file, n_cycles, T, freq, stopping, output):
+def monte_carlo(tree_file, constraints_file, n_cycles, T, freq, stopping, annealing, output):
 
     best_tree = output + "_" + "BestTree"
 
@@ -252,7 +252,9 @@ def monte_carlo(tree_file, constraints_file, n_cycles, T, freq, stopping, output
     print("Best Tree will be saved in %s" % best_tree)
     print("Running %s cycles. Sampling 1 out of %s trees" % (n_cycles,freq))
     print("Temperature set at %s. " % T)
+    print("Annealing set as %s" % str(annealing))
 
+    accepted_changes = 0
 
     while cycle < n_cycles:
 
@@ -277,11 +279,23 @@ def monte_carlo(tree_file, constraints_file, n_cycles, T, freq, stopping, output
             mynode_order = proposed_order
             myconflict = newconflict
 
+            accepted_changes +=1
+
             cycle += 1
 
         else:
 
-            cutoff = math.exp((myconflict - newconflict) / T)
+            if annealing and n_cycles >= 1000:
+
+                acceptance_ratio = accepted_changes / float(n_cycles)
+                if acceptance_ratio >= 0.25:
+                    T = T * 0.9
+                    print("New temperature is %s" % str(T))
+
+                cutoff = math.exp((myconflict - newconflict) / T)
+
+            else:
+                cutoff = math.exp((myconflict - newconflict) / T)
 
             if random.random() <= cutoff:
 
@@ -342,6 +356,9 @@ if __name__ == "__main__":
     parser.add_argument("-T", "--T", help="Temperature of the chain, default = 1.0", default=1.0)
     parser.add_argument("-f", "--f", help="frequency of sampling, default = 10", default=10)
     parser.add_argument("-s", "--s", help="Stop chain when conflict goes below this, default = 0", default=0.0)
+    parser.add_argument("-a", "--a", help="Annealing. Default False", default=False)
+
+
 
     args = parser.parse_args()
 
@@ -350,5 +367,5 @@ if __name__ == "__main__":
         print("you can run this script just with python mc_explorer -tree yourtreefile -constraints yourconstraints -o name of the output chain")
         exit(0)
 
-    monte_carlo(args.t, args.c, int(args.n), float(args.T), int(args.f), float(args.s), "./" + args.o)
+    monte_carlo(args.t, args.c, int(args.n), float(args.T), int(args.f), float(args.s), float(args.a), "./" + args.o)
 
