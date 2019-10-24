@@ -256,6 +256,12 @@ def monte_carlo(tree_file, constraints_file, n_cycles, T, freq, stopping, anneal
 
     accepted_changes = 0
 
+    if annealing == 1:
+
+        print("Setting temperature to 10% of Transfers: %s" % str(total_w/10))
+        T = total_w / 10
+
+
     while cycle < n_cycles:
 
         if myconflict <= stopping:
@@ -266,7 +272,7 @@ def monte_carlo(tree_file, constraints_file, n_cycles, T, freq, stopping, anneal
 
         newconflict = compute_conflict(proposed_order, constraints)
 
-        if newconflict < best_solution:
+        if newconflict <= best_solution:
             best_solution = newconflict
 
             with open(best_tree, "w") as f:
