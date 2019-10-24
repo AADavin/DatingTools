@@ -242,7 +242,7 @@ def monte_carlo(tree_file, constraints_file, n_cycles, T, freq, stopping, anneal
     mynode_order = get_node_order(tree_file)
     myconflict = compute_conflict(mynode_order, constraints)
 
-
+    last_acceptance_ratio = 0
     cycle = 0
 
     print("### Node ranking explorer ### ")
@@ -254,7 +254,7 @@ def monte_carlo(tree_file, constraints_file, n_cycles, T, freq, stopping, anneal
     print("Temperature set at %s. " % T)
     print("Annealing set as %s" % str(annealing))
 
-    stack_size = len(mynode_order) * 10
+    stack_size = len(mynode_order) * 2
     accepted_changes = [0 for x in range(stack_size)]
     # This is a stack with a size proportional to the tree
 
@@ -271,13 +271,26 @@ def monte_carlo(tree_file, constraints_file, n_cycles, T, freq, stopping, anneal
             print("Conflict went below the treshold limit")
             break
 
-        if annealing and cycle >= 1000:
+        if annealing and cycle >= 1000: # To have some burning
+
             acceptance_ratio = sum(accepted_changes) / float(len(accepted_changes))
+
             if cycle % int(freq / 10) == 0:
                 print("Acceptance ratio of last %s cycles is %s" % (str(len(accepted_changes)), str(acceptance_ratio)))
-                if acceptance_ratio >= 0.25:
-                    T = T * 0.9
+
+                # PD
+                
+                derivative = acceptance_ratio - last_acceptance_ratio
+
+                if acceptance_ratio >= 0.30:
+                    T = T * (acceptance_ratio - 0.3) * (1 - derivative)
                     print("New temperature is %s" % str(T))
+
+                #elif acceptance_ratio <= 20 and cooled_down == True:
+                #  T = T * (1 - derivative)
+
+            last_acceptance_ratio = acceptance_ratio
+
 
         proposed_order = propose_order(parents, children, mynode_order)
 
