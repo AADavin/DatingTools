@@ -25,7 +25,9 @@ def get_constraints(constraints_file):
 def get_constraints_for_order(orderfile, constraintsfile):
 
     with open(orderfile) as f:
-        order = f.readline().strip().split(",")
+        for l in f:
+            pass
+    order = l.strip().split(",")
 
     ranking = {node: rank for rank, node in enumerate(order)}
 
