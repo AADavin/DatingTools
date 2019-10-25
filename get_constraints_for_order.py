@@ -35,7 +35,7 @@ def get_constraints_for_order(orderfile, constraintsfile):
 
     for dn, rcs in constraints.items():
         for rc, wt in rcs.iteritems():
-            if ranking[dn] > ranking[rc]:
+            if ranking[dn] < ranking[rc]:
                 print("\t".join([dn,rc, str(wt)]))
 
 
