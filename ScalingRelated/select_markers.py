@@ -27,7 +27,7 @@ def select_markers(refpath, gtreepath):
     genetrees = [x for x in os.listdir(refpath)]
     gt2leaves = dict()
     for gt in genetrees:
-        with open(os.path.join(refreepath, gt)) as f:
+        with open(os.path.join(refpath, gt)) as f:
             gtree = ete3.Tree(f.readline(),format=1)
     sps = set([x.name for x in gtree])    
     gt2leaves[gt] = sps
