@@ -31,7 +31,7 @@ def compute_scaling_agreement(reftree, redtree):
     mnode_order = list()
     
     for n in node_order:    
-        if n== "Root":
+        if n == "Root":
             continue
         if n not in n2present_s or n not in n2present_ref:
             continue
@@ -41,13 +41,9 @@ def compute_scaling_agreement(reftree, redtree):
         y.append(t2)    
         mnode_order.append(n)
     
-    # We scale x
-    x = x/np.max(x)
 
     # We inverse the distance (easier to read), by substractint 1-d
 
-    x = [1-x for x in x]
-    y = [1-y for y in y]
 
     x = np.array(x)
     y = np.array(y)
