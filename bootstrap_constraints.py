@@ -46,7 +46,7 @@ def bootstrap_constraints(transfers_file, tree_file, replicates):
     fam_number = len(constraints)
 
     for i in range(replicates):
-        with open("./Replicate_NUM.tsv".replace("NUM",str(i)), "w") as f:
+        with open("./TR_Replicate_NUM.tsv".replace("TR",transfers_file).replace("NUM",str(i)), "w") as f:
             fams_sampled = random.choices(list(constraints.keys()), k = fam_number)
             for fam in fams_sampled:
                 for dn_c in constraints[fam]:

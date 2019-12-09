@@ -2,9 +2,9 @@ import sys
 import os
 
 
-def read_bootstrap():
+def read_bootstrap(keyword):
 
-    replicate_files = [x for x in os.listdir("./") if "partial_order" in x]
+    replicate_files = [x for x in os.listdir("./") if "partial_order" in x and keyword in x]
     number_files = len(replicate_files)
     constraints = dict()
     for replicate_file in replicate_files:
@@ -20,16 +20,16 @@ def read_bootstrap():
 
     for dn in constraints:
         for rc in constraints[dn]:
-            line = "\t".join([dn, rc, str(constraints[dn][rc]["n"]), str(constraints[dn][rc]["wt"] / number_files)])
+            line = "\t".join([dn, rc, str(constraints[dn][rc]["n"]), str(constraints[dn][rc]["wt"] / constraints[dn][rc]["n"])])
             print(line)
 
 
 
 if __name__ == "__main__":
 
-    if len(sys.argv) != 1:
-        print("usage: python read_boostrap.py")
+    if len(sys.argv) != 2:
+        print("usage: python read_boostrap.py keyword")
         exit(0)
 
-    scr = sys.argv
-    read_bootstrap()
+    scr, keyword = sys.argv
+    read_bootstrap(keyword)

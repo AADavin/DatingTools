@@ -1,7 +1,7 @@
 import sys
 import ete3
 
-def convert_constraints_to_transfers(constraints_file, transfers_file, tree_file):
+def convert_constraints_to_transfers(constraints_file, transfers_file, tree_file, include_leaves):
 
     with open(tree_file) as f:
         mtree = ete3.Tree(f.readline().strip(),format=1)
@@ -23,26 +23,36 @@ def convert_constraints_to_transfers(constraints_file, transfers_file, tree_file
 
     with open(constraints_file) as f:
         for line in f:
-            dn, rc, wt, _ = line.strip().split(" ")
+            try:
+                 dn, rc, wt, _ = line.strip().split(" ")
+            except:
+                 dn, rc, wt = line.strip().split("\t")
             if dn not in constraints:
                 constraints[dn] = dict()
             if rc not in constraints[dn]:
                 constraints[dn][rc] = 0
-
     with open(transfers_file) as f:
-
         for line in f:
             fam, dn, rc, wt = line.strip().split("\t")
-
             if "(" in dn:
                 dn = dn.split("(")[0]
             if "(" in rc:
                 rc = rc.split("(")[0]
-
             if node2parent[dn] == "None":
                 continue
-            if rc in leaves:
+            if include_leaves == False and rc in leaves:
+                continue 
+            if include_leaves == True and rc in leaves:
+                if fam not in saved_transfers:
+                    saved_transfers[fam] = dict()
+                if dn not in saved_transfers[fam]:
+                    saved_transfers[fam][dn] = dict()
+                if rc not in saved_transfers[fam][dn]: 
+                    saved_transfers[fam][dn][rc] = 0
+                                   
+                saved_transfers[fam][dn][rc] += float(wt)
                 continue
+             
             dn_c = node2parent[dn]
 
             if dn_c in constraints:
@@ -67,9 +77,9 @@ def convert_constraints_to_transfers(constraints_file, transfers_file, tree_file
 
 if __name__ == "__main__":
 
-    if len(sys.argv) != 4:
-        print("usage: python convert_constraints_to_transfers constraints_file transfer_file tree_file")
+    if len(sys.argv) != 5:
+        print("usage: python convert_constraints_to_transfers constraints_file transfer_file tree_file False")
         exit(0)
 
-    scr, constraints_file, transfers_file, tree_file = sys.argv
-    convert_constraints_to_transfers(constraints_file, transfers_file, tree_file)
+    scr, constraints_file, transfers_file, tree_file, leaves = sys.argv
+    convert_constraints_to_transfers(constraints_file, transfers_file, tree_file, bool(leaves))
