@@ -51,9 +51,23 @@ def compute_scaling_agreement(reftree, redtree, normalize):
 
     
 
-    print("\t".join(["REF_VALUE","RED_VALUE","NODE"]))
+    print("\t".join(["REF_VALUE","RED_VALUE","NODE","RANK"]))
     for v1, v2, v3 in zip(x,y,mnode_order):
-        print("\t".join((str(v1),str(v2),v3)))
+        rank = get_rank(v2)
+        print("\t".join((str(v1),str(v2),v3,rank)))
+
+def get_rank(x):
+    if x > 0.3 and x < 0.5:
+        return("O")
+    elif x >= 0.5 and x < 0.7:
+        return("F")
+    elif x >= 0.7 and x < 0.9:
+        return("f")
+    elif x >= 0.9:
+        return("G")
+    else:
+        return("X")
+
 
 if __name__ == "__main__":
 
